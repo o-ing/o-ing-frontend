@@ -55,6 +55,18 @@ export default function Signup() {
         <Input type="email" />
       </Form.Item>
       <Form.Item
+        label="비밀번호"
+        name="password"
+        rules={[
+          {
+            required: true,
+            message: "비밀번호는 필수로 입력해야 합니다!",
+          },
+        ]}
+      >
+        <Input.Password />
+      </Form.Item>
+      <Form.Item
         wrapperCol={{
           offset: 8,
           span: 16,
