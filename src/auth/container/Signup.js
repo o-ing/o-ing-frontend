@@ -1,10 +1,20 @@
 import { Button, Col, Form, Input, Row } from "antd";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import AuthFormLayout from "../component/AuthFormLayout";
+import { actions } from "../state";
+
 export default function Signup() {
+  const dispatch = useDispatch();
+
+  const onFinish = ({ id, name, nickname, email, password }) => {
+    console.log(id, name, nickname, email, password, " component");
+    dispatch(actions.fetchSignup({ id, name, nickname, email, password }));
+  };
+
   return (
-    <AuthFormLayout onFinish={() => {}}>
+    <AuthFormLayout onFinish={onFinish}>
       <Form.Item
         label="아이디"
         name="id"
