@@ -4,8 +4,6 @@ import { actions, Types } from ".";
 import { callApi } from "../../common/util/callApi";
 
 function* fetchSignup({ id, name, nickname, email, password }) {
-  console.log(id, name, nickname, email, password, "saga!!!!");
-
   const { isSuccess, data } = yield call(callApi, {
     url: "/auth/signup",
     method: "post",
@@ -18,7 +16,7 @@ function* fetchSignup({ id, name, nickname, email, password }) {
     },
   });
   if (isSuccess && data) {
-    yield put(actions.setUser({ name }));
+    yield put(actions.setUser(data.name));
   }
 }
 
