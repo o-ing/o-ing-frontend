@@ -1,22 +1,20 @@
-import { Card, Col, Row } from "antd";
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from "@ant-design/icons";
-import React, { useEffect } from "react";
-import Meta from "antd/lib/card/Meta";
-import useWindowSize, { WINDOW_SIZE_TYPE } from "../hooks/useWindowSize";
-import SmallWindowCard from "../component/SmallWindowCard";
-import MediumWindowCard from "../component/MediumWindowCard";
-import LargeWindowCard from "../component/LargeWindowCard";
+import React from "react";
+import CardComponent from "../component/CardComponent";
+
+import styled from "styled-components";
+import { Col, Row } from "antd";
 
 export default function Club() {
-  const windowSize = useWindowSize();
-  useEffect(() => {}, [windowSize]);
-
   return (
-    <div style={{ marginTop: "10%", marginRight: "3%", marginLeft: "3%", justifyContent: "center" }}>
-      {windowSize === WINDOW_SIZE_TYPE.SMALL && <SmallWindowCard cardInfos={data} />}
-      {windowSize === WINDOW_SIZE_TYPE.MEDIUM && <MediumWindowCard cardInfos={data} />}
-      {windowSize === WINDOW_SIZE_TYPE.LARGE && <LargeWindowCard cardInfos={data} />}
-    </div>
+    <Wrapper>
+      <Row gutter={30}>
+        {data.map((item) => (
+          <T offset={30} span={8}>
+            <CardComponent imgSrc={item.img} title={item.title} description={item.description} />
+          </T>
+        ))}
+      </Row>
+    </Wrapper>
   );
 }
 
@@ -47,3 +45,23 @@ const data = [
     description: "55555555555555555555",
   },
 ];
+
+const Wrapper = styled.div`
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+const T = styled(Col)`
+  @media (max-width: 600px) {
+    ${(props) => (props.span = 24)}
+  }
+  ${(props) => (props.span = 8)}
+`;
+// margin-top: 100px;
+// display: flex;
+// flex-wrap: wrap;
+// justify-content: flex-start;
+// @media screen and (max-width: 580px) {
+//   justify-content: center;
+//   text-align: center;
+// }
