@@ -1,18 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CardComponent from "../component/CardComponent";
 
 import styled from "styled-components";
 import { Col, Row } from "antd";
+import { useWindowSizeObserver } from "../hooks/useWindowSizeObserver";
 
 export default function Club() {
+  const size = useWindowSizeObserver();
+  useEffect(() => {
+    console.log(size, "club");
+  }, [size]);
+
   return (
     <Wrapper>
       <Row gutter={30}>
-        {data.map((item) => (
-          <T offset={30} span={8}>
-            <CardComponent imgSrc={item.img} title={item.title} description={item.description} />
-          </T>
-        ))}
+        {data.map((item, idx) => {
+          if (size === "large") {
+            return (
+              <Col key={idx} offset={30} span={8}>
+                <CardComponent imgSrc={item.img} title={item.title} description={item.description} />
+              </Col>
+            );
+          } else if (size === "middle") {
+            return (
+              <Col key={idx} offset={30} span={12}>
+                <CardComponent imgSrc={item.img} title={item.title} description={item.description} />
+              </Col>
+            );
+          }
+          return (
+            <Col key={idx} offset={30} span={24}>
+              <CardComponent imgSrc={item.img} title={item.title} description={item.description} />
+            </Col>
+          );
+        })}
       </Row>
     </Wrapper>
   );
@@ -50,18 +71,10 @@ const Wrapper = styled.div`
   width: 1200px;
   margin-left: auto;
   margin-right: auto;
-`;
-const T = styled(Col)`
-  @media (max-width: 600px) {
-    ${(props) => (props.span = 24)}
+  @media (max-width: 1200px) {
+    width: 900px;
   }
-  ${(props) => (props.span = 8)}
+  @media (max-width: 918px) {
+    width: 400px;
+  }
 `;
-// margin-top: 100px;
-// display: flex;
-// flex-wrap: wrap;
-// justify-content: flex-start;
-// @media screen and (max-width: 580px) {
-//   justify-content: center;
-//   text-align: center;
-// }
