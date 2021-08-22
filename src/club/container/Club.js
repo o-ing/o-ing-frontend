@@ -74,7 +74,7 @@ const Wrapper = styled.div`
   @media (max-width: 1200px) {
     width: 900px;
   }
-  @media (max-width: 918px) {
+  @media (max-width: 900px) {
     width: 400px;
   }
 `;
