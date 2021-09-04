@@ -57,7 +57,6 @@ export default function Signup() {
         rules={[
           {
             required: true,
-
             message: "이메일은 필수로 입력해야 합니다!",
           },
         ]}

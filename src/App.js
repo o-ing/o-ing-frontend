@@ -4,6 +4,7 @@ import Signup from "./auth/container/Signup";
 import "antd/dist/antd.css";
 import Login from "./auth/container/Login";
 import Club from "./club/container/Club";
+import CreatePost from "./createPost/container/CreatePost";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route exact path="/" component={Club} />
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
+      <Route path="/createPost" component={CreatePost} />
     </>
   );
 }

@@ -17,19 +17,19 @@ export default function Club() {
         {data.map((item, idx) => {
           if (size === "large") {
             return (
-              <Col key={idx} offset={30} span={8}>
+              <Col key={idx} span={8}>
                 <CardComponent imgSrc={item.img} title={item.title} description={item.description} />
               </Col>
             );
           } else if (size === "middle") {
             return (
-              <Col key={idx} offset={30} span={12}>
+              <Col key={idx} span={12}>
                 <CardComponent imgSrc={item.img} title={item.title} description={item.description} />
               </Col>
             );
           }
           return (
-            <Col key={idx} offset={30} span={24}>
+            <Col key={idx} span={24}>
               <CardComponent imgSrc={item.img} title={item.title} description={item.description} />
             </Col>
           );
@@ -75,6 +75,6 @@ const Wrapper = styled.div`
     width: 900px;
   }
   @media (max-width: 900px) {
-    width: 400px;
+    width: 320px;
   }
 `;
