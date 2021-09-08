@@ -7,7 +7,6 @@ export const Types = {
 
 export const actions = {
   fetchSignup: ({ id, name, nickname, email, password }) => {
-    console.log(id, name, nickname, email, password, "redux email");
     return {
       type: Types.FetchSignup,
       id,

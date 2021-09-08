@@ -15,9 +15,9 @@ function* fetchSignup({ id, name, nickname, email, password }) {
       password,
     },
   });
-  if (isSuccess && data) {
-    yield put(actions.setUser(data.name));
-  }
+  // if (isSuccess && data) {
+  //   yield put(actions.setUser(data.name));
+  // }
 }
 
 export default function* () {
