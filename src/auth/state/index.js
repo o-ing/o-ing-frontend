@@ -2,7 +2,7 @@ import { createReducer } from "../../common/redux-helper";
 
 export const Types = {
   FetchSignup: "auth/FetchSignup",
-  SetUser: "auth/SetUser",
+  SetSignup: "auth/SetSignup",
 };
 
 export const actions = {
@@ -16,17 +16,16 @@ export const actions = {
       phoneNumber,
     };
   },
-  setUser: (name) => ({
-    type: Types.SetUser,
-    name,
+  setSignup: (isSignup) => ({
+    type: Types.SetSignup,
+    isSignup,
   }),
 };
-const INITIAL_STATE = { name: "", isLogin: undefined };
+const INITIAL_STATE = { name: "", isLogin: undefined, isSignUp: false };
 
 const reducer = createReducer(INITIAL_STATE, {
-  [Types.SetUser]: (state, action) => {
-    state.name = action.name;
-    state.isLogin = action.name ? "Login" : "NotLogin";
+  [Types.SetSignup]: (state, action) => {
+    state.isSignUp = action.isSignup;
   },
 });
 export default reducer;

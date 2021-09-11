@@ -4,9 +4,7 @@ import MDEditor from "@uiw/react-md-editor";
 export default function CreatePost() {
   const [value, setValue] = useState("mkdtr");
 
-  const handlePaste = (e) => {
-    console.log(e.target.value);
-  };
+  const handlePaste = (e) => {};
   return (
     <div className="container">
       <MDEditor onPaste={(e) => handlePaste(e)} height={200} value={value} onChange={setValue} />

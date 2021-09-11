@@ -1,12 +1,10 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { all, call, put, takeLeading } from "redux-saga/effects";
 import { actions, Types } from ".";
-import { callApi } from "../../common/util/callApi";
-
+import { signupApi } from "../../api/signupApi";
 function* fetchSignup({ name, nickname, email, password, phoneNumber }) {
-  const a = yield call(callApi, {
+  const { isSuccess } = yield call(signupApi, {
     url: "/api/sign",
-    method: "post",
     data: {
       name,
       nickname,
@@ -15,10 +13,9 @@ function* fetchSignup({ name, nickname, email, password, phoneNumber }) {
       phoneNumber,
     },
   });
-  console.log(a, "a");
-  // if (isSuccess && data) {
-  //   yield put(actions.setUser(data.name));
-  // }
+  if (isSuccess) {
+    yield put(actions.setSignup(isSuccess));
+  }
 }
 
 export default function* () {

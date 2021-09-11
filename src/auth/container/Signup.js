@@ -3,10 +3,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import AuthFormLayout from "../component/AuthFormLayout";
+import useBlockSignup from "../hooks/useBlockSignup";
 import { actions } from "../state";
 import { verifyEmail, verifyName, verifyNickname, verifyPassword, verityPhoneNumber } from "../util/authVerify";
 
 export default function Signup() {
+  useBlockSignup();
+
   const dispatch = useDispatch();
 
   const onFinish = ({ name, nickname, email, password, phoneNumber }) => {
