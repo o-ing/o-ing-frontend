@@ -6,14 +6,14 @@ export const Types = {
 };
 
 export const actions = {
-  fetchSignup: ({ id, name, nickname, email, password }) => {
+  fetchSignup: ({ name, nickname, email, password, phoneNumber }) => {
     return {
       type: Types.FetchSignup,
-      id,
       name,
       nickname,
       email,
       password,
+      phoneNumber,
     };
   },
   setUser: (name) => ({

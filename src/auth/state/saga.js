@@ -3,18 +3,19 @@ import { all, call, put, takeLeading } from "redux-saga/effects";
 import { actions, Types } from ".";
 import { callApi } from "../../common/util/callApi";
 
-function* fetchSignup({ id, name, nickname, email, password }) {
-  const { isSuccess, data } = yield call(callApi, {
-    url: "/auth/signup",
+function* fetchSignup({ name, nickname, email, password, phoneNumber }) {
+  const a = yield call(callApi, {
+    url: "/api/sign",
     method: "post",
     data: {
-      id,
       name,
       nickname,
       email,
       password,
+      phoneNumber,
     },
   });
+  console.log(a, "a");
   // if (isSuccess && data) {
   //   yield put(actions.setUser(data.name));
   // }

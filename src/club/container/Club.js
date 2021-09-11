@@ -7,9 +7,7 @@ import { useWindowSizeObserver } from "../hooks/useWindowSizeObserver";
 
 export default function Club() {
   const size = useWindowSizeObserver();
-  useEffect(() => {
-    console.log(size, "club");
-  }, [size]);
+  useEffect(() => {}, [size]);
 
   return (
     <Wrapper>
