@@ -19,21 +19,21 @@ export async function signupApi({ url, data, params = {} }) {
       message.error("서버에서 에러가 났습니다. 다시 시도해주세요.");
     }
     if (status === BAD_REQUEST) {
-      if (errorMessage === "INVALID_NAME") {
+      if (errorMessage === "INVALID_MEMBER_NAME") {
         message.error("유효하지 않은 이름입니다. 다시 회원가입해주세요.");
-      } else if (errorMessage === "INVALID_EMAIL") {
+      } else if (errorMessage === "INVALID_MEMBER_EMAIL") {
         message.error("유효하지 않은 이메일입니다. 다시 회원가입해주세요.");
-      } else if (errorMessage === "INVALID_NICKNAME") {
+      } else if (errorMessage === "INVALID_MEMBER_NICKNAME") {
         message.error("유효하지 않은 닉네임입니다. 다시 회원가입해주세요.");
-      } else if (errorMessage === "INVALID_PHONE_NUMBER") {
+      } else if (errorMessage === "INVALID_MEMBER_PHONE_NUMBER") {
         message.error("유효하지 않은 휴대폰번호입니다. 다시 회원가입해주세요.");
-      } else if (errorMessage === "INVALID_PASSWORD") {
+      } else if (errorMessage === "INVALID_MEMBER_PASSWORD") {
         message.error("유효하지 않은 비밀번호입니다. 다시 회원가입해주세요.");
-      } else if (errorMessage === "DUPLICATION_EMAIL") {
+      } else if (errorMessage === "DUPLICATION_MEMBER_EMAIL") {
         message.error("이메일이 중복되었습니다. 다시 회원가입해주세요.");
-      } else if (errorMessage === "DUPLICATION_NICKNAME") {
+      } else if (errorMessage === "DUPLICATION_MEMBER_NICKNAME") {
         message.error("닉네임이 중복되었습니다. 다시 회원가입해주세요.");
-      } else if (errorMessage === "DUPLICATION_PHONE_NUMBER") {
+      } else if (errorMessage === "DUPLICATION_MEMBER_PHONE_NUMBER") {
         message.error("전화번호가 중복되었습니다. 다시 회원가입해주세요.");
       }
     }
