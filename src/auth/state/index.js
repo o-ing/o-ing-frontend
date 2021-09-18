@@ -2,6 +2,7 @@ import { createReducer } from "../../common/redux-helper";
 
 export const Types = {
   FetchSignup: "auth/FetchSignup",
+  FetchLogin: "auth/FetchLogin",
   SetSignup: "auth/SetSignup",
 };
 
@@ -14,6 +15,13 @@ export const actions = {
       email,
       password,
       phoneNumber,
+    };
+  },
+  fetchLogin: ({ email, password }) => {
+    return {
+      type: Types.FetchLogin,
+      email,
+      password,
     };
   },
   setSignup: (isSignup) => ({
