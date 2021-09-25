@@ -1,8 +1,10 @@
 import { message } from "antd/lib";
 import axios from "axios";
+import { API_HOST } from "../common/constant";
 import { API_SUCCESS, BAD_REQUEST } from "./constant";
-import { saveJwtTokenInCookie } from "./util/saveJwtToken";
+import { saveJwtTokenInLocalStorage } from "./util/saveJwtTokenInLocalStorage";
 export async function loginApi({ url, data, params = {} }) {
+  url = API_HOST + url;
   try {
     const res = await axios({ url, method: "post", params, data });
     if (res.status !== API_SUCCESS) {
@@ -10,7 +12,7 @@ export async function loginApi({ url, data, params = {} }) {
       return { isSuccess: false };
     }
     if (res.data.data.hasOwnProperty("token")) {
-      saveJwtTokenInCookie(res.data.data.token);
+      saveJwtTokenInLocalStorage(res.data.data.token);
     }
     message.success("회원가입에 성공하였습니다!");
     return { isSuccess: true };
