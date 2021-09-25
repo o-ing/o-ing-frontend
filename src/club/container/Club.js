@@ -4,8 +4,10 @@ import CardComponent from "../component/CardComponent";
 import styled from "styled-components";
 import { Col, Row } from "antd";
 import { useWindowSizeObserver } from "../hooks/useWindowSizeObserver";
+import useOnlyLoginCanUse from "../../auth/hooks/useOnlyLoginCanUse";
 
 export default function Club() {
+  useOnlyLoginCanUse();
   const size = useWindowSizeObserver();
   useEffect(() => {}, [size]);
 

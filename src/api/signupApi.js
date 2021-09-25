@@ -1,10 +1,8 @@
 import axios from "axios";
 import { message } from "antd";
-import { API_HOST } from "../common/constant";
 import { API_SUCCESS, BAD_REQUEST, SERVER_ERROR } from "./constant";
 
 export async function signupApi({ url, data, params = {} }) {
-  // url = API_HOST + url;
   try {
     const res = await axios({ url, method: "post", params, data });
     if (res.status !== API_SUCCESS) {

@@ -26,6 +26,9 @@ function* fetchLogin({ email, password }) {
       password,
     },
   });
+  if (isSuccess) {
+    yield put(actions.setLogin(isSuccess));
+  }
 }
 
 export default function* () {
