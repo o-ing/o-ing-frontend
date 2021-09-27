@@ -12,3 +12,7 @@ export const getLocalStorageItem = (name) => {
 export const setLocalStorageItem = (name, data) => {
   localStorage.setItem(name, JSON.stringify(data));
 };
+
+export const removeLocalStorageItem = (name) => {
+  localStorage.removeItem(name);
+};

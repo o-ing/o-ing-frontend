@@ -1,20 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import header_oing from "../asset/header/header_oing.png";
 import useIsLogIn from "../auth/hooks/useIsLogIn";
 import { Link } from "react-router-dom";
-import Login from "../auth/container/Login";
+import { useDispatch } from "react-redux";
+import { actions } from "../auth/state";
+import { removeLocalStorageItem } from "../common/util/usingLocalStorage";
 
 export default function Header() {
+  const dispatch = useDispatch();
   const isLogIn = useIsLogIn();
+
+  const handleLogout = () => {
+    removeLocalStorageItem("x-auth");
+    removeLocalStorageItem("nickname");
+    removeLocalStorageItem("role");
+    dispatch(actions.setLogout());
+  };
+
   return (
     <HeaderStyle>
       <StyledNav>
         <Link to="/">
           <img src={header_oing} alt="oing header img" />
         </Link>
-        {!isLogIn && <Link to="/">로그아웃</Link>}
         {isLogIn && (
+          <Link to="/" onClick={handleLogout}>
+            로그아웃
+          </Link>
+        )}
+        {!isLogIn && (
           <>
             <Link to="/login">로그인</Link>
             <Link to="/signup">회원가입</Link>
@@ -45,7 +60,6 @@ const StyledNav = styled.nav`
     margin-right: auto;
   }
 
-  border: 1px solid red;
   max-width: 1200px;
   margin: auto auto;
 

@@ -5,6 +5,7 @@ export const Types = {
   FetchLogin: "auth/FetchLogin",
   SetSignup: "auth/SetSignup",
   SetLogin: "auth/SetLogin",
+  SetLogout: "auth/SetLogout",
 };
 
 export const actions = {
@@ -31,8 +32,11 @@ export const actions = {
     nickname,
     role,
   }),
+  setLogout: () => ({
+    type: Types.SetLogout,
+  }),
 };
-const INITIAL_STATE = { name: "", isLogin: false, isSignUp: false, nickname: null, role: null };
+const INITIAL_STATE = { isLogin: false, isSignUp: false, nickname: null, role: null };
 
 const reducer = createReducer(INITIAL_STATE, {
   [Types.SetSignup]: (state, action) => {
@@ -42,6 +46,11 @@ const reducer = createReducer(INITIAL_STATE, {
     state.isLogin = isLogin;
     state.nickname = nickname;
     state.role = role;
+  },
+  [Types.SetLogout]: (state, _) => {
+    state.isLogin = false;
+    state.nickname = null;
+    state.role = null;
   },
 });
 export default reducer;
