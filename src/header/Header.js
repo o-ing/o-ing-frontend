@@ -19,39 +19,34 @@ export default function Header() {
   };
 
   return (
-    <HeaderStyle>
-      <StyledNav>
-        <Link to="/">
-          <img src={header_oing} alt="oing header img" />
+    <StyledNav>
+      <Link to="/">
+        <img src={header_oing} alt="oing header img" />
+      </Link>
+      {isLogIn && (
+        <Link to="/" onClick={handleLogout}>
+          로그아웃
         </Link>
-        {isLogIn && (
-          <Link to="/" onClick={handleLogout}>
-            로그아웃
-          </Link>
-        )}
-        {!isLogIn && (
-          <>
-            <Link to="/login">로그인</Link>
-            <Link to="/signup">회원가입</Link>
-          </>
-        )}
-      </StyledNav>
-    </HeaderStyle>
+      )}
+      {!isLogIn && (
+        <>
+          <Link to="/login">로그인</Link>
+          <Link to="/signup">회원가입</Link>
+        </>
+      )}
+    </StyledNav>
   );
 }
 
-const HeaderStyle = styled.div`
-  background-color: white;
+const StyledNav = styled.nav`
   height: 80px;
   border-bottom: 1px solid #f2f4ff;
-  padding-top: calc(80px / 4);
-`;
-const StyledNav = styled.nav`
   display: flex;
-  justify-content: center;
   align-items: center;
   padding-left: 64px;
   padding-right: 64px;
+  max-width: 1200px;
+  margin: 0 auto;
 
   img {
     width: 44px;
@@ -59,10 +54,6 @@ const StyledNav = styled.nav`
   a:first-child {
     margin-right: auto;
   }
-
-  max-width: 1200px;
-  margin: auto auto;
-
   a:not(:first-child) {
     color: rgb(254, 185, 145);
     margin-left: 10px;
