@@ -19,7 +19,7 @@ function* fetchSignup({ name, nickname, email, password, phoneNumber }) {
   }
 }
 function* fetchLogin({ email, password }) {
-  const { isSuccess } = yield call(loginApi, {
+  const { isSuccess, data } = yield call(loginApi, {
     url: "/api/login",
     data: {
       email,
@@ -27,7 +27,7 @@ function* fetchLogin({ email, password }) {
     },
   });
   if (isSuccess) {
-    yield put(actions.setLogin(isSuccess));
+    yield put(actions.setLogin({ isLogin: isSuccess, nickname: data.nickname, role: data.role }));
   }
 }
 

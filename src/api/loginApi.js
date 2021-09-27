@@ -1,6 +1,7 @@
 import { message } from "antd/lib";
 import axios from "axios";
 import { API_HOST } from "../common/constant";
+import { setLocalStorageItem } from "../common/util/usingLocalStorage";
 import { API_SUCCESS, BAD_REQUEST } from "./constant";
 import { saveJwtTokenInLocalStorage } from "./util/saveJwtTokenInLocalStorage";
 export async function loginApi({ url, data, params = {} }) {
@@ -14,8 +15,10 @@ export async function loginApi({ url, data, params = {} }) {
     if (res.data.data.hasOwnProperty("token")) {
       saveJwtTokenInLocalStorage(res.data.data.token);
     }
-    message.success("회원가입에 성공하였습니다!");
-    return { isSuccess: true };
+    setLocalStorageItem("nickname", res.data.data.nickname);
+    setLocalStorageItem("role", res.data.data.role);
+    message.success("로그인에 성공하였습니다!");
+    return { isSuccess: true, data: res.data.data };
   } catch ({ response }) {
     const { status, message: errorMessage } = response.data;
     if (status === BAD_REQUEST) {

@@ -25,19 +25,23 @@ export const actions = {
     type: Types.SetSignup,
     isSignup,
   }),
-  setLogin: (isLogin) => ({
+  setLogin: ({ isLogin, nickname, role }) => ({
     type: Types.SetLogin,
     isLogin,
+    nickname,
+    role,
   }),
 };
-const INITIAL_STATE = { name: "", isLogin: false, isSignUp: false };
+const INITIAL_STATE = { name: "", isLogin: false, isSignUp: false, nickname: null, role: null };
 
 const reducer = createReducer(INITIAL_STATE, {
   [Types.SetSignup]: (state, action) => {
     state.isSignUp = action.isSignup;
   },
-  [Types.SetLogin]: (state, action) => {
-    state.isLogin = action.isLogin;
+  [Types.SetLogin]: (state, { isLogin, nickname, role }) => {
+    state.isLogin = isLogin;
+    state.nickname = nickname;
+    state.role = role;
   },
 });
 export default reducer;
