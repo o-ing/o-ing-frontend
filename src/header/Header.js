@@ -3,13 +3,15 @@ import styled from "styled-components";
 import header_oing from "../asset/header/header_oing.png";
 import useIsLogIn from "../auth/hooks/useIsLogIn";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../auth/state";
 import { removeLocalStorageItem } from "../common/util/usingLocalStorage";
+import { USER_ROLE } from "../common/constant";
 
 export default function Header() {
   const dispatch = useDispatch();
   const isLogIn = useIsLogIn();
+  const userRole = useSelector((state) => state.auth.role);
 
   const handleLogout = () => {
     removeLocalStorageItem("x-auth");
@@ -25,9 +27,12 @@ export default function Header() {
           <img src={header_oing} alt="oing header img" />
         </Link>
         {isLogIn && (
-          <Link to="/" onClick={handleLogout}>
-            로그아웃
-          </Link>
+          <>
+            {userRole === USER_ROLE.ADMIN && <Link to="/grantUserRole">사용자 권한 관리하기</Link>}
+            <Link to="/" onClick={handleLogout}>
+              로그아웃
+            </Link>
+          </>
         )}
         {!isLogIn && (
           <>
@@ -59,10 +64,12 @@ const StyledNav = styled.nav`
     margin-right: auto;
   }
   a:not(:first-child) {
-    color: rgb(254, 185, 145);
-    margin-left: 10px;
+    color: rgb(${({ theme }) => theme.colors.orange_rgb});
+    margin-right: 7px;
+    padding-right: 7px;
+    border-right: 1px solid;
   }
-  @media (max-width: 600px) {
+  @media (max-width: ${({ theme }) => theme.windowSize.small}) {
     padding-left: 34px;
     padding-right: 34px;
   }
