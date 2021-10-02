@@ -19,35 +19,39 @@ export default function Header() {
   };
 
   return (
-    <StyledNav>
-      <Link to="/">
-        <img src={header_oing} alt="oing header img" />
-      </Link>
-      {isLogIn && (
-        <Link to="/" onClick={handleLogout}>
-          로그아웃
+    <HeaderStyle>
+      <StyledNav>
+        <Link to="/">
+          <img src={header_oing} alt="oing header img" />
         </Link>
-      )}
-      {!isLogIn && (
-        <>
-          <Link to="/login">로그인</Link>
-          <Link to="/signup">회원가입</Link>
-        </>
-      )}
-    </StyledNav>
+        {isLogIn && (
+          <Link to="/" onClick={handleLogout}>
+            로그아웃
+          </Link>
+        )}
+        {!isLogIn && (
+          <>
+            <Link to="/login">로그인</Link>
+            <Link to="/signup">회원가입</Link>
+          </>
+        )}
+      </StyledNav>
+    </HeaderStyle>
   );
 }
-
-const StyledNav = styled.nav`
+const HeaderStyle = styled.div`
+  background-color: white;
   height: 80px;
   border-bottom: 1px solid #f2f4ff;
+`;
+const StyledNav = styled.nav`
+  height: inherit;
   display: flex;
   align-items: center;
   padding-left: 64px;
   padding-right: 64px;
   max-width: 1200px;
   margin: 0 auto;
-
   img {
     width: 44px;
   }
