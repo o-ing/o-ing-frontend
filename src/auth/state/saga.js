@@ -3,6 +3,7 @@ import { all, call, put, takeLeading } from "redux-saga/effects";
 import { actions, Types } from ".";
 import { loginApi } from "../../api/loginApi";
 import { signupApi } from "../../api/signupApi";
+
 function* fetchSignup({ name, nickname, email, password, phoneNumber }) {
   const { isSuccess } = yield call(signupApi, {
     url: "/api/sign",
@@ -18,6 +19,7 @@ function* fetchSignup({ name, nickname, email, password, phoneNumber }) {
     yield put(actions.setSignup(isSuccess));
   }
 }
+
 function* fetchLogin({ email, password }) {
   const { isSuccess, data } = yield call(loginApi, {
     url: "/api/login",

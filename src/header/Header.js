@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import header_oing from "../asset/header/header_oing.png";
 import useIsLogIn from "../auth/hooks/useIsLogIn";
@@ -7,11 +7,62 @@ import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../auth/state";
 import { removeLocalStorageItem } from "../common/util/usingLocalStorage";
 import { USER_ROLE } from "../common/constant";
+import CreateNewClubModal from "../adminPage/CreateNewClubModal";
 
 export default function Header() {
   const dispatch = useDispatch();
   const isLogIn = useIsLogIn();
   const userRole = useSelector((state) => state.auth.role);
+
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [clubName, setClubName] = useState("");
+  const [clubImage, setClubImage] = useState("before");
+  const inputRef = useRef(null);
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleOk = () => {
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setVisible(false);
+      setConfirmLoading(false);
+    });
+  };
+
+  const handleCancel = () => {
+    setVisible(false);
+    setClubName("");
+  };
+
+  const handleClubNameInp = (e) => {
+    setClubName(e.target.value);
+    console.log(clubName);
+  };
+
+  const handleClubImgInp = (e) => {
+    e.preventDefault();
+    
+    // setClubImage((a) => {
+    //   console.log("clubImage", a);
+    // });
+
+    let reader = new FileReader();
+    const file = inputRef.current.files[0];
+    console.log(file);
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      // return reader.result;
+      // setClubImage(reader.result);
+      setClubImage(() => reader.result);
+      setClubImage((clubImage) => {
+        console.log("clubImage", clubImage);
+      });
+    };
+  };
+
+  https://velog.io/@jinsunee/setState%EA%B0%80-%EB%B9%84%EB%8F%99%EA%B8%B0%ED%95%A8%EC%88%98%EC%9D%B8-%EC%9D%B4%EC%9C%A0
 
   const handleLogout = () => {
     removeLocalStorageItem("x-auth");
@@ -28,7 +79,25 @@ export default function Header() {
         </Link>
         {isLogIn && (
           <>
-            {userRole === USER_ROLE.ADMIN && <Link to="/grantUserRole">사용자 권한 관리하기</Link>}
+            {userRole === USER_ROLE.ADMIN && (
+              <>
+                <Link to="/" onClick={showModal}>
+                  사용자 권한 관리하기
+                </Link>
+                <input type="file" onChange={handleClubImgInp} ref={inputRef} />
+                {/* <CreateNewClubModal
+                  inputRef={inputRef}
+                  handleClubImgInp={handleClubImgInp}
+                  clubImage={clubImage}
+                  clubName={clubName}
+                  handleClubNameInp={handleClubNameInp}
+                  visible={visible}
+                  handleOk={handleOk}
+                  confirmLoading={confirmLoading}
+                  handleCancel={handleCancel}
+                /> */}
+              </>
+            )}
             <Link to="/" onClick={handleLogout}>
               로그아웃
             </Link>
