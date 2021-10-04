@@ -15,44 +15,8 @@ export default function Header() {
   const userRole = useSelector((state) => state.auth.role);
 
   const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [clubName, setClubName] = useState("");
-  const [clubImage, setClubImage] = useState({
-    file: "",
-    previewURL: "",
-  });
-  const inputRef = useRef(null);
   const showModal = () => {
     setVisible(true);
-  };
-
-  const handleOk = () => {
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-    });
-  };
-
-  const handleCancel = () => {
-    setVisible(false);
-    setClubName("");
-  };
-
-  const handleClubNameInp = (e) => {
-    setClubName(e.target.value);
-    console.log(clubName);
-  };
-
-  const handleClubImgInp = (e) => {
-    e.preventDefault();
-    let reader = new FileReader();
-    const file = inputRef.current.files[0];
-
-    reader.onloadend = () => {
-      setClubImage({ file: file, previewURL: reader.result });
-    };
-    file && reader.readAsDataURL(file);
   };
 
   const handleLogout = () => {
@@ -73,19 +37,9 @@ export default function Header() {
             {userRole === USER_ROLE.ADMIN && (
               <>
                 <Link to="/" onClick={showModal}>
-                  사용자 권한 관리하기
+                  동아리 생성하기
                 </Link>
-                <CreateNewClubModal
-                  inputRef={inputRef}
-                  handleClubImgInp={handleClubImgInp}
-                  clubImage={clubImage}
-                  clubName={clubName}
-                  handleClubNameInp={handleClubNameInp}
-                  visible={visible}
-                  handleOk={handleOk}
-                  confirmLoading={confirmLoading}
-                  handleCancel={handleCancel}
-                />
+                <CreateNewClubModal visible={visible} setVisible={setVisible} />
               </>
             )}
             <Link to="/" onClick={handleLogout}>
