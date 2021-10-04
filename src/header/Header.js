@@ -17,7 +17,10 @@ export default function Header() {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [clubName, setClubName] = useState("");
-  const [clubImage, setClubImage] = useState("before");
+  const [clubImage, setClubImage] = useState({
+    file: "",
+    previewURL: "",
+  });
   const inputRef = useRef(null);
   const showModal = () => {
     setVisible(true);
@@ -43,26 +46,14 @@ export default function Header() {
 
   const handleClubImgInp = (e) => {
     e.preventDefault();
-    
-    // setClubImage((a) => {
-    //   console.log("clubImage", a);
-    // });
-
     let reader = new FileReader();
     const file = inputRef.current.files[0];
-    console.log(file);
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      // return reader.result;
-      // setClubImage(reader.result);
-      setClubImage(() => reader.result);
-      setClubImage((clubImage) => {
-        console.log("clubImage", clubImage);
-      });
-    };
-  };
 
-  https://velog.io/@jinsunee/setState%EA%B0%80-%EB%B9%84%EB%8F%99%EA%B8%B0%ED%95%A8%EC%88%98%EC%9D%B8-%EC%9D%B4%EC%9C%A0
+    reader.onloadend = () => {
+      setClubImage({ file: file, previewURL: reader.result });
+    };
+    file && reader.readAsDataURL(file);
+  };
 
   const handleLogout = () => {
     removeLocalStorageItem("x-auth");
@@ -84,8 +75,7 @@ export default function Header() {
                 <Link to="/" onClick={showModal}>
                   사용자 권한 관리하기
                 </Link>
-                <input type="file" onChange={handleClubImgInp} ref={inputRef} />
-                {/* <CreateNewClubModal
+                <CreateNewClubModal
                   inputRef={inputRef}
                   handleClubImgInp={handleClubImgInp}
                   clubImage={clubImage}
@@ -95,7 +85,7 @@ export default function Header() {
                   handleOk={handleOk}
                   confirmLoading={confirmLoading}
                   handleCancel={handleCancel}
-                /> */}
+                />
               </>
             )}
             <Link to="/" onClick={handleLogout}>
