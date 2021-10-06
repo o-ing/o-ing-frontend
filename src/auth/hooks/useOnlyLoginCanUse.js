@@ -1,9 +1,6 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { message } from "antd/lib";
-import { getLocalStorageItem } from "../../common/util/usingLocalStorage";
-import { actions } from "../state";
 import useIsLogIn from "./useIsLogIn";
 
 export default function useOnlyLoginCanUse() {

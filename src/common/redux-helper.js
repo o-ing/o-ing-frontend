@@ -16,6 +16,7 @@ export function createReducer(initialState, handlerMap) {
 export function createSetValueAction(type) {
   return (key, value) => ({ type, key, value });
 }
+
 export function setValueReducer(state, action) {
   state[action.key] = action.value;
 }

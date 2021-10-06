@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import header_oing from "../asset/header/header_oing.png";
 import useIsLogIn from "../auth/hooks/useIsLogIn";
@@ -57,11 +57,13 @@ export default function Header() {
     </HeaderStyle>
   );
 }
+
 const HeaderStyle = styled.div`
   background-color: white;
   height: 80px;
   border-bottom: 1px solid #f2f4ff;
 `;
+
 const StyledNav = styled.nav`
   height: inherit;
   display: flex;
