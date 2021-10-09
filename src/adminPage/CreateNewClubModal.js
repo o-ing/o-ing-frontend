@@ -1,8 +1,6 @@
-import { Input, Modal, Upload, Menu, Dropdown, message } from "antd";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { Input, Modal, Menu, Dropdown } from "antd";
 import React, { useState } from "react";
 import styled from "styled-components";
-import { befImgUpload, getBase64 } from "../header/befImgUpload";
 import { useDispatch } from "react-redux";
 import { actions as adminClub } from "../state/club/admin";
 import { CLUB_BRANCH } from "./constant";
@@ -68,16 +66,16 @@ const CreateNewClubModal = ({ visible, setVisible }) => {
   return (
     <Modal title="동아리 생성하기" visible={visible} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel}>
       <ModalInner>
-        <Input placeholder="동아리 이름을 입력해 주세요" value={clubName} onChange={handleClubName} />
-        <Dropdown overlay={menu}>
+        <StyledInput placeholder="동아리 이름을 입력해 주세요" value={clubName} onChange={handleClubName} />
+        <StyledDripDown overlay={menu}>
           <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()} href="/">
             {dropName} <DownOutlined />
           </a>
-        </Dropdown>
+        </StyledDripDown>
         <ImageUploading value={clubImage} onChange={handleClubImg} dataURLKey="data_url">
           {({ imageList, onImageUpload }) => (
             <div className="upload__image-wrapper">
-              <button onClick={onImageUpload}>Click or Drop here</button>
+              <StyledImgBtn onClick={onImageUpload}>Click or Drop here</StyledImgBtn>
               {imageList.map((image, index) => (
                 <div key={index} className="image-item">
                   <img src={image["data_url"]} alt="" width="100" />
@@ -96,5 +94,22 @@ const ModalInner = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
+const StyledInput = styled(Input)`
+  margin: 10px 0;
+`;
+const StyledDripDown = styled(Dropdown)`
+  margin: 10px 0;
+`;
+const StyledImgBtn = styled.button`
+  outline: none;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  margin: 10px 0;
+  &:hover {
+    background-color: rgba(190, 190, 190);
+  }
+`;
 export default CreateNewClubModal;
