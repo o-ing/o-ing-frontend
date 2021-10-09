@@ -59,9 +59,14 @@ export default function Header() {
 }
 
 const HeaderStyle = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: white;
+  width: 100%;
   height: 80px;
-  border-bottom: 1px solid #f2f4ff;
+  border-bottom: 2px solid rgba(${({ theme }) => theme.colors.$purple_rgb}, 0.3);
+  z-index: 1;
 `;
 
 const StyledNav = styled.nav`

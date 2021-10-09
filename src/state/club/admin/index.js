@@ -2,6 +2,7 @@ import { createReducer } from "../../../common/redux-helper";
 
 export const Types = {
   FetchCreateClub: "admin/FetchCreateClub",
+  SetClubIsCreated: "admin/SetClubIsCreated",
 };
 
 export const actions = {
@@ -11,12 +12,16 @@ export const actions = {
     clubImage,
     clubBranch,
   }),
+  setClubIsCreated: (isCreated) => ({
+    type: Types.SetClubIsCreated,
+    isCreated,
+  }),
 };
 const INITIAL_STATE = { isCreated: false };
 
 const reducer = createReducer(INITIAL_STATE, {
-  [Types.SetClearModal]: (state, action) => {
-    state.isSignUp = action.isSignup;
+  [Types.SetClubIsCreated]: (state, action) => {
+    state.isCreated = action.isCreated;
   },
 });
 export default reducer;

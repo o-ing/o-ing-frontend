@@ -1,11 +1,10 @@
 import axios from "axios";
-import { API_HOST } from "../../common/constant";
-import { getLocalStorageItem } from "../../common/util/usingLocalStorage";
 import { API_SUCCESS, BAD_REQUEST } from "../constant";
+import { getUrlAndToken } from "../util/getUrlAndToken";
 
 export async function createClubApi({ url, data, params = {} }) {
-  url = API_HOST + url;
-  const token = getLocalStorageItem("x-auth");
+  let token = null;
+  [url, token] = getUrlAndToken(url, "x-auth");
   try {
     const res = await axios({
       url,

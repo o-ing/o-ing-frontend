@@ -2,6 +2,7 @@
 const colors = {
   gray_hex: "#f2f4ff",
   orange_rgb: "254, 185, 145",
+  $purple_rgb: "140, 75, 255",
 };
 
 const windowSize = {

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { Types } from ".";
-import { all, call, takeLeading } from "redux-saga/effects";
+import { actions, Types } from ".";
+import { all, call, put, takeLeading } from "redux-saga/effects";
 import { createClubApi } from "../../../api/admin/createClubApi";
 import { message } from "antd";
 
@@ -14,6 +14,7 @@ function* fetchCreateClub({ clubName, clubImage, clubBranch }) {
     },
   });
   if (result.isSuccess) {
+    yield put(actions.setClubIsCreated(true));
     return message.success(result.Message);
   }
   return message.error(result.errorMessage);

@@ -1,78 +1,43 @@
 import React, { useEffect } from "react";
-import CardComponent from "../component/CardComponent";
+import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
-import { Col, Row } from "antd";
-import { useWindowSizeObserver } from "../hooks/useWindowSizeObserver";
+import { CLUB_BRANCH } from "../../common/constant";
+import { actions as ClubThumbnail } from "../../state/club/common/ClubThumbnail";
+import CardComponent from "../component/CardComponent";
 
 export default function Club() {
-  const size = useWindowSizeObserver();
-  useEffect(() => {}, [size]);
-
+  const dispatch = useDispatch();
+  const thumbnailData = useSelector((state) => state.thumbnailStore.thumbnailData);
+  useEffect(() => {
+    dispatch(ClubThumbnail.fetchClubThumbnail());
+  }, [dispatch]);
   return (
-    <Wrapper>
-      <Row gutter={30}>
-        {data.map((item, idx) => {
-          if (size === "large") {
-            return (
-              <Col key={idx} span={8}>
-                <CardComponent imgSrc={item.img} title={item.title} description={item.description} />
-              </Col>
-            );
-          } else if (size === "middle") {
-            return (
-              <Col key={idx} span={12}>
-                <CardComponent imgSrc={item.img} title={item.title} description={item.description} />
-              </Col>
-            );
-          }
-          return (
-            <Col key={idx} span={24}>
-              <CardComponent imgSrc={item.img} title={item.title} description={item.description} />
-            </Col>
-          );
-        })}
-      </Row>
-    </Wrapper>
+    <StyledMain>
+      <InnerMain>{thumbnailData && thumbnailData.map(({ name, image, branch }) => <CardComponent key={name} image={image} name={name} branch={CLUB_BRANCH[branch]} />)}</InnerMain>
+    </StyledMain>
   );
 }
-
-const data = [
-  {
-    img: "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    title: "Card title1",
-    description: "11111111111",
-  },
-  {
-    img: "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    title: "Card title2",
-    description: "222222222222",
-  },
-  {
-    img: "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    title: "Card title3",
-    description: "3333333333333",
-  },
-  {
-    img: "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    title: "Card title4",
-    description: "444444444444444",
-  },
-  {
-    img: "https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png",
-    title: "Card title5",
-    description: "55555555555555555555",
-  },
-];
-
-const Wrapper = styled.div`
-  width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  @media (max-width: 1200px) {
-    width: 900px;
+// 1200 * 120;
+// 900 80
+const StyledMain = styled.main`
+  width: 1320px;
+  margin: 100px auto 0;
+  display: flex;
+  @media (max-width: 1320px) {
+    width: 980px;
   }
-  @media (max-width: 900px) {
-    width: 320px;
+  @media (max-width: 980px) {
+    width: 640px;
   }
+  @media (max-width: 640px) {
+    width: 300px;
+  }
+`;
+const InnerMain = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 40px;
 `;

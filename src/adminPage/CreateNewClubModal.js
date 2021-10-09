@@ -1,12 +1,13 @@
 import { Input, Modal, Menu, Dropdown } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actions as adminClub } from "../state/club/admin";
-import { CLUB_BRANCH } from "./constant";
+import { CLUB_BRANCH } from "../common/constant";
 import { DownOutlined } from "@ant-design/icons";
 import ImageUploading from "react-images-uploading";
 import { verifyClubData } from "./util/verifyClubData";
+import { useHistory } from "react-router";
 
 const CreateNewClubModal = ({ visible, setVisible }) => {
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -14,9 +15,15 @@ const CreateNewClubModal = ({ visible, setVisible }) => {
   const [clubImage, setClubImage] = useState([]);
   const [clubBranch, setClubBranch] = useState("");
   const [dropName, setDropName] = useState("분과를 선택해주세요");
+  const isCreated = useSelector((state) => state.adminClub.isCreated);
 
   const dispatch = useDispatch();
-
+  const history = useHistory();
+  useEffect(() => {
+    if (isCreated) {
+      history.push("/");
+    }
+  }, [isCreated, dispatch, history]);
   const onDropItemClick = (e) => {
     setDropName(CLUB_BRANCH[e.key]);
     setClubBranch(e.key);
