@@ -1,10 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { Types } from ".";
-import { all, call, put, takeLeading, getContext } from "redux-saga/effects";
+import { all, call, takeLeading } from "redux-saga/effects";
 import { createClubApi } from "../../../api/admin/createClubApi";
 import { message } from "antd";
-import { removeLoginStorage } from "../../../common/util/usingLocalStorage";
-import { createBrowserHistory } from "history";
 
 function* fetchCreateClub({ clubName, clubImage, clubBranch }) {
   const result = yield call(createClubApi, {

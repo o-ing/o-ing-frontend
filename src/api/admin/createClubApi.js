@@ -27,7 +27,7 @@ export async function createClubApi({ url, data, params = {} }) {
       if (errorMessage === "DUPLICATION_CLUB_NAME") {
         return { isSuccess: false, errorMessage: "중복된 동아리 이름입니다!" };
       }
-      if (errorMessage === "INVALID_CLUB_NAME") {
+      if (errorMessage === "INVALID_MEMBER_NAME") {
         return { isSuccess: false, errorMessage: "1글자에서 50글자까지만 입력 가능합니다!" };
       }
     }
