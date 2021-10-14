@@ -23,6 +23,7 @@ export default function Club() {
 const StyledMain = styled.main`
   width: 1320px;
   margin: 100px auto 0;
+  padding-bottom: 80px;
   display: flex;
   @media (max-width: 1320px) {
     width: 980px;

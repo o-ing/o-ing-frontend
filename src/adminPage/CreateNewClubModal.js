@@ -8,6 +8,7 @@ import { DownOutlined } from "@ant-design/icons";
 import ImageUploading from "react-images-uploading";
 import { verifyClubData } from "./util/verifyClubData";
 import { useHistory } from "react-router";
+import { actions as thumbnailStore } from "../state/club/common/ClubThumbnail";
 
 const CreateNewClubModal = ({ visible, setVisible }) => {
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -21,7 +22,7 @@ const CreateNewClubModal = ({ visible, setVisible }) => {
   const history = useHistory();
   useEffect(() => {
     if (isCreated) {
-      history.push("/");
+      dispatch(thumbnailStore.fetchClubThumbnail());
     }
   }, [isCreated, dispatch, history]);
   const onDropItemClick = (e) => {
@@ -82,7 +83,8 @@ const CreateNewClubModal = ({ visible, setVisible }) => {
         <ImageUploading value={clubImage} onChange={handleClubImg} dataURLKey="data_url">
           {({ imageList, onImageUpload }) => (
             <div className="upload__image-wrapper">
-              <StyledImgBtn onClick={onImageUpload}>Click or Drop here</StyledImgBtn>
+              <StyledImgBtn onClick={onImageUpload}>썸네일을 업로드하세요!</StyledImgBtn>
+              (권장 사이즈는 300 x 240입니다)
               {imageList.map((image, index) => (
                 <div key={index} className="image-item">
                   <img src={image["data_url"]} alt="" width="100" />
@@ -114,7 +116,7 @@ const StyledImgBtn = styled.button`
   background-color: white;
   border: none;
   cursor: pointer;
-  margin: 10px 0;
+  margin: 10px 10px 10px 0;
   &:hover {
     background-color: rgba(190, 190, 190);
   }

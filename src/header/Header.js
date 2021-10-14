@@ -29,9 +29,10 @@ export default function Header() {
   return (
     <HeaderStyle>
       <StyledNav>
-        <Link to="/">
-          <img src={header_oing} alt="oing header img" />
-        </Link>
+        <StyledLink to="/" style={{ fontSize: "20px" }}>
+          {/* <img src={header_oing} alt="oing header img" /> */}
+          Oing
+        </StyledLink>
         {isLogIn && (
           <>
             {userRole === USER_ROLE.ADMIN && (
@@ -84,7 +85,7 @@ const StyledNav = styled.nav`
     margin-right: auto;
   }
   a:not(:first-child) {
-    color: rgb(${({ theme }) => theme.colors.orange_rgb});
+    color: rgb(${({ theme }) => theme.colors.$purple_rgb});
     margin-right: 7px;
     padding-right: 7px;
     border-right: 1px solid;
@@ -92,5 +93,13 @@ const StyledNav = styled.nav`
   @media (max-width: ${({ theme }) => theme.windowSize.small}) {
     padding-left: 34px;
     padding-right: 34px;
+  }
+`;
+const StyledLink = styled.a`
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(${({ theme }) => theme.colors.$purple_rgb});
+  &:hover {
+    color: rgba(${({ theme }) => theme.colors.$purple_rgb}, 0.6);
   }
 `;
