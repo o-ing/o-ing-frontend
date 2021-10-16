@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import header_oing from "../asset/header/header_oing.png";
 import useIsLogIn from "../auth/hooks/useIsLogIn";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +7,7 @@ import { actions } from "../auth/state";
 import { removeLocalStorageItem } from "../common/util/usingLocalStorage";
 import { USER_ROLE } from "../common/constant";
 import CreateNewClubModal from "../adminPage/CreateNewClubModal";
+import ChangeAuthor from "../adminPage/ChangeAuthor";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -15,10 +15,14 @@ export default function Header() {
   const userRole = useSelector((state) => state.auth.role);
 
   const [visible, setVisible] = useState(false);
+  const [showChangeAuthor, setShowChangeAuthor] = useState(false);
+
   const showModal = () => {
     setVisible(true);
   };
-
+  const handleShowChangeAuthor = () => {
+    setShowChangeAuthor(true);
+  };
   const handleLogout = () => {
     removeLocalStorageItem("x-auth");
     removeLocalStorageItem("nickname");
@@ -30,7 +34,6 @@ export default function Header() {
     <HeaderStyle>
       <StyledNav>
         <StyledLink to="/" style={{ fontSize: "20px" }}>
-          {/* <img src={header_oing} alt="oing header img" /> */}
           Oing
         </StyledLink>
         {isLogIn && (
@@ -40,7 +43,11 @@ export default function Header() {
                 <Link to="/" onClick={showModal}>
                   동아리 생성하기
                 </Link>
+                <Link to="/" onClick={handleShowChangeAuthor}>
+                  권한 변경하기
+                </Link>
                 <CreateNewClubModal visible={visible} setVisible={setVisible} />
+                <ChangeAuthor visible={showChangeAuthor} setVisible={setShowChangeAuthor} />
               </>
             )}
             <Link to="/" onClick={handleLogout}>

@@ -3,6 +3,7 @@ import { createReducer } from "../../../common/redux-helper";
 export const Types = {
   FetchCreateClub: "admin/FetchCreateClub",
   SetClubIsCreated: "admin/SetClubIsCreated",
+  FetchChangeAuthor: "admin/FetchChangeAuthor",
 };
 
 export const actions = {
@@ -15,6 +16,11 @@ export const actions = {
   setClubIsCreated: (isCreated) => ({
     type: Types.SetClubIsCreated,
     isCreated,
+  }),
+  fetchChangeAuthor: ({ email, name }) => ({
+    type: Types.FetchChangeAuthor,
+    email,
+    name,
   }),
 };
 const INITIAL_STATE = { isCreated: false };

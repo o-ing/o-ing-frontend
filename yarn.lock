@@ -1815,6 +1815,13 @@
   dependencies:
     prismjs "^1.23.0"
 
+"@toast-ui/editor-plugin-color-syntax@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@toast-ui/editor-plugin-color-syntax/-/editor-plugin-color-syntax-3.0.1.tgz#2a7e3fc24ef3329fad737d59750288d12eadbf5d"
+  integrity sha512-7IC3GHvxlxIc++zm+Zed3U55gNb8iWxXd/oDZLLGW+fmcOtg6fzB0mdfkinQTof69bCgTRvyR60XKxcRs0vQEQ==
+  dependencies:
+    tui-color-picker "^2.2.6"
+
 "@toast-ui/editor@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@toast-ui/editor/-/editor-3.1.0.tgz#48febab0b9102ad6e9fb2bd3ed3a1207003a6bd8"
@@ -11396,6 +11403,11 @@ tty-browserify@0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
   integrity sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY=
+
+tui-color-picker@^2.2.6:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/tui-color-picker/-/tui-color-picker-2.2.7.tgz#233cd501b17568ae6d604e06898b0c8553851186"
+  integrity sha512-y7gUe6PdVBq8ruZbiOkeaN7N/DX+ogVyLkK53OM4qW5Vrc4pDWYEKlnOBCsPODb4/RSzS9iTd6fXYirXxeakJA==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
