@@ -26,11 +26,12 @@ export const actions = {
     type: Types.SetSignup,
     isSignup,
   }),
-  setLogin: ({ isLogin, nickname, role }) => ({
+  setLogin: ({ isLogin, nickname, role, clubName }) => ({
     type: Types.SetLogin,
     isLogin,
     nickname,
     role,
+    clubName,
   }),
   setLogout: () => ({
     type: Types.SetLogout,
