@@ -6,7 +6,7 @@ import { signupApi } from "../../api/signupApi";
 
 function* fetchSignup({ name, nickname, email, password, phoneNumber }) {
   const { isSuccess } = yield call(signupApi, {
-    url: "/api/sign",
+    url: "/api/member/sign",
     data: {
       name,
       nickname,
@@ -22,14 +22,14 @@ function* fetchSignup({ name, nickname, email, password, phoneNumber }) {
 
 function* fetchLogin({ email, password }) {
   const { isSuccess, data } = yield call(loginApi, {
-    url: "/api/login",
+    url: "/api/member/login",
     data: {
       email,
       password,
     },
   });
   if (isSuccess) {
-    yield put(actions.setLogin({ isLogin: isSuccess, nickname: data.nickname, role: data.role }));
+    yield put(actions.setLogin({ isLogin: isSuccess, nickname: data.nickname, role: data.role, clubName: data.clubName }));
   }
 }
 

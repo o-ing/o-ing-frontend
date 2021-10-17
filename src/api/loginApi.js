@@ -15,8 +15,9 @@ export async function loginApi({ url, data, params = {} }) {
     if (res.data.data.hasOwnProperty("token")) {
       saveJwtTokenInLocalStorage(res.data.data.token);
     }
-    setLocalStorageItem("nickname", res.data.data.nickname);
+    setLocalStorageItem("nick       name", res.data.data.nickname);
     setLocalStorageItem("role", res.data.data.role);
+    setLocalStorageItem("clubName", res.data.data.clubName);
     message.success("로그인에 성공하였습니다!");
     return { isSuccess: true, data: res.data.data };
   } catch ({ response }) {

@@ -27,6 +27,7 @@ export default function Header() {
     removeLocalStorageItem("x-auth");
     removeLocalStorageItem("nickname");
     removeLocalStorageItem("role");
+    removeLocalStorageItem("clubName");
     dispatch(actions.setLogout());
   };
 

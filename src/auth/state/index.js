@@ -36,21 +36,23 @@ export const actions = {
     type: Types.SetLogout,
   }),
 };
-const INITIAL_STATE = { isLogin: false, isSignUp: false, nickname: null, role: null };
+const INITIAL_STATE = { isLogin: false, isSignUp: false, nickname: null, role: null, clubName: null };
 
 const reducer = createReducer(INITIAL_STATE, {
   [Types.SetSignup]: (state, action) => {
     state.isSignUp = action.isSignup;
   },
-  [Types.SetLogin]: (state, { isLogin, nickname, role }) => {
+  [Types.SetLogin]: (state, { isLogin, nickname, role, clubName }) => {
     state.isLogin = isLogin;
     state.nickname = nickname;
     state.role = role;
+    state.clubName = clubName;
   },
   [Types.SetLogout]: (state, _) => {
     state.isLogin = false;
     state.nickname = null;
     state.role = null;
+    state.clubName = null;
   },
 });
 export default reducer;

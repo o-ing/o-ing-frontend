@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
@@ -18,8 +18,7 @@ export default function Club() {
     </StyledMain>
   );
 }
-// 1200 * 120;
-// 900 80
+
 const StyledMain = styled.main`
   width: 1320px;
   margin: 100px auto 0;
