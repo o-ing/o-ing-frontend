@@ -8,7 +8,7 @@ import CreatePost from "./createPost/container/CreatePost";
 import Header from "./header/Header";
 import { ThemeProvider } from "styled-components";
 import theme from "./common/commonCss";
-import CreateClubIntro from "./midAdPage/createClubIntro";
+import ClubIntro from "./common/ClubIntro";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
       <Route path="/createPost" component={CreatePost} />
-      <Route path="/createClubIntro/:clubName" component={CreateClubIntro} />
+      <Route path="/club/:clubId" component={ClubIntro} />
     </ThemeProvider>
   );
 }

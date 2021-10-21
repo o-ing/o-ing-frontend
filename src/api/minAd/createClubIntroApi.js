@@ -5,7 +5,6 @@ import { getUrlAndToken } from "../util/getUrlAndToken";
 export async function createClubIntroApi({ url, data }) {
   let token = null;
   [url, token] = getUrlAndToken(url, "x-auth");
-  console.log(data);
   try {
     const res = await axios({
       url,
@@ -15,13 +14,11 @@ export async function createClubIntroApi({ url, data }) {
       },
       data,
     });
-    console.log(res, "result");
     if (res.status !== API_SUCCESS) {
       return { isSuccess: false, errorMessage: "서버에서 에러가 났습니다. 다시 시도해주세요." };
     }
     return { isSuccess: true, Message: "동아리를 생성하였습니다!" };
   } catch ({ response }) {
-    console.log(response, "error");
     const { status, message: errorMessage } = response.data;
     if (status === BAD_REQUEST) {
       if (errorMessage === "INVALID_CLUB_DESCRIPTION") {

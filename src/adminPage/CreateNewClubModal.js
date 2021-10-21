@@ -8,7 +8,7 @@ import { DownOutlined } from "@ant-design/icons";
 import ImageUploading from "react-images-uploading";
 import { verifyClubData } from "./util/verifyClubData";
 import { useHistory } from "react-router";
-import { actions as thumbnailStore } from "../state/club/common/ClubThumbnail";
+import { actions as thumbnailStore } from "../state/club/common/clubThumbnail";
 
 const CreateNewClubModal = ({ visible, setVisible }) => {
   const [confirmLoading, setConfirmLoading] = useState(false);

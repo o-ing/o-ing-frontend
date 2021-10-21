@@ -10,7 +10,6 @@ function* fetchClubIntro({ description }) {
       description,
     },
   });
-  console.log(result);
 }
 
 export default function* () {
