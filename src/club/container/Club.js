@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
 import { CLUB_BRANCH } from "../../common/constant";
-import { actions as ClubThumbnail } from "../../state/club/common/ClubThumbnail";
+import { actions as ClubThumbnail } from "../../state/club/common/clubThumbnail/index";
 import CardComponent from "../component/CardComponent";
 
 export default function Club() {
@@ -14,7 +14,7 @@ export default function Club() {
   }, [dispatch]);
   return (
     <StyledMain>
-      <InnerMain>{thumbnailData && thumbnailData.map(({ name, image, branch }) => <CardComponent key={name} image={image} name={name} branch={CLUB_BRANCH[branch]} />)}</InnerMain>
+      <InnerMain>{thumbnailData && thumbnailData.map(({ name, image, branch, id }) => <CardComponent key={id} id={id} image={image} name={name} branch={CLUB_BRANCH[branch]} />)}</InnerMain>
     </StyledMain>
   );
 }

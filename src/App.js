@@ -9,6 +9,7 @@ import Header from "./header/Header";
 import { ThemeProvider } from "styled-components";
 import theme from "./common/commonCss";
 import ClubIntro from "./common/ClubIntro";
+import CreateClubIntro from "./midAdPage/createClubIntro";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/login" component={Login} />
       <Route path="/createPost" component={CreatePost} />
       <Route path="/club/:clubId" component={ClubIntro} />
+      <Route path="/createClub/:clubId" component={CreateClubIntro} />
     </ThemeProvider>
   );
 }

@@ -2,17 +2,17 @@ import React, { useRef } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 
-export default function CardComponent({ name, image, branch }) {
+export default function CardComponent({ id, name, image, branch }) {
   const cardRef = useRef();
   const history = useHistory();
   const handleClick = () => {
-    history.push(`createClubIntro/${cardRef.current.alt}`);
+    history.push(`club/${cardRef.current.id}`);
   };
 
   return (
-    <Card onClick={handleClick}>
+    <Card onClick={handleClick} ref={cardRef} id={id}>
       <ImgContainer>
-        <img ref={cardRef} src={image} alt={name} />
+        <img src={image} alt={name} />
       </ImgContainer>
       <ClubDes>
         <span>{branch}</span>
