@@ -26,6 +26,7 @@ const ClubIntro = () => {
             <h1 style={{ margin: "0 0 0 10px", padding: 0 }}>{clubData.name}</h1>
           </Header>
           {clubData?.name === userClub && <SetClubIntro to={`/createClub/${clubId}`}>클럽 인트로 수정하기</SetClubIntro>}
+          {clubData?.description && <Content dangerouslySetInnerHTML={{ __html: clubData.description }} />}
         </>
       )}
       {clubData?.description[0] === "#" && <NoContent>🌱 동아리 소개가 아직 준비 중입니다 🌱</NoContent>}
@@ -87,5 +88,9 @@ const SetClubIntro = styled(Link)`
     background-color: rgba(${({ theme }) => theme.colors.$purple_rgb}, 0.5);
     color: black;
   }
+`;
+const Content = styled.div`
+  max-width: 1080px;
+  margin: 30px auto 0;
 `;
 export default ClubIntro;
