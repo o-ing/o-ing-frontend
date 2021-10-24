@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actions as ClubData } from "../../state/club/common/clubData";
 import { getLocalStorageItem } from "../util/usingLocalStorage";
+import ClubResumeModal from "../ClubResumeModal";
 
 const ClubIntro = () => {
   const dispatch = useDispatch();
@@ -11,10 +12,14 @@ const ClubIntro = () => {
   const { clubId } = useParams();
   const clubData = useSelector((state) => state.clubDataStore.introData);
   const userClub = getLocalStorageItem("clubName");
+  const [showResume, setShowResume] = useState(false);
 
   useEffect(() => {
     dispatch(ClubData.fetchGetClubIntro(clubId));
   }, [dispatch, clubId]);
+  const handleShowResume = () => {
+    setShowResume(true);
+  };
   return (
     <TopWrapper>
       {clubData?.image && (
@@ -25,7 +30,16 @@ const ClubIntro = () => {
             </ImageWrapper>
             <h1 style={{ margin: "0 0 0 10px", padding: 0 }}>{clubData.name}</h1>
           </Header>
-          {clubData?.name === userClub && <SetClubIntro to={`/createClub/${clubId}`}>클럽 인트로 수정하기</SetClubIntro>}
+          {clubData?.name === userClub ? (
+            <SetClubIntro to={`/createClub/${clubId}`}>클럽 인트로 수정하기</SetClubIntro>
+          ) : (
+            <>
+              <SetClubIntro to={`/club/${clubId}`} onClick={handleShowResume}>
+                자기소개서 등록하기
+              </SetClubIntro>
+              <ClubResumeModal visible={showResume} setVisible={setShowResume} clubId={clubId} />
+            </>
+          )}
           {clubData?.description && <Content dangerouslySetInnerHTML={{ __html: clubData.description }} />}
         </>
       )}
@@ -67,6 +81,29 @@ const NoContent = styled.div`
   font-weight: bold;
 `;
 const SetClubIntro = styled(Link)`
+  position: absolute;
+  top: 365px;
+  right: 50px;
+  z-index: 1;
+  outline: none;
+  border: 2px solid rgba(${({ theme }) => theme.colors.$purple_rgb}, 0.5);
+  background-color: rgba(${({ theme }) => theme.colors.$purple_rgb}, 0.3);
+  width: fit-content;
+  height: 50px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 5px;
+  color: black;
+  &:hover {
+    background-color: rgba(${({ theme }) => theme.colors.$purple_rgb}, 0.5);
+    color: black;
+  }
+`;
+const Modal = styled.button`
   position: absolute;
   top: 365px;
   right: 50px;

@@ -27,9 +27,7 @@ const CreateClubIntro = () => {
     }
   }, [dispatch, history, clubId]);
   useEffect(() => {
-    console.log(description);
     editRef.current.getInstance().setHTML(description);
-    console.log(editRef.current.getInstance().setHTML(description));
   });
   return (
     <TopWrapper>

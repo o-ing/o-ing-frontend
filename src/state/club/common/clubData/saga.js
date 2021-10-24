@@ -8,7 +8,6 @@ function* fetchGetClubIntro({ id }) {
     url: `/api/club/${id}`,
   });
   if (result.isSuccess) {
-    console.log();
     yield put(actions.setGetClubIntro({ data: result.thumbnailData }));
   }
 }

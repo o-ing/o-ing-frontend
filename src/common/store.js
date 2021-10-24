@@ -12,7 +12,6 @@ import clubIntroStore from "../state/club/minAd";
 import clubIntroSaga from "../state/club/minAd/saga";
 import clubDataStore from "../state/club/common/clubData";
 import clubDataSaga from "../state/club/common/clubData/saga";
-
 const reducer = combineReducers({
   auth: authReducer,
   adminClub: adClubReducer,
