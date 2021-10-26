@@ -2,7 +2,8 @@ import { createReducer } from "../../../common/redux-helper";
 
 export const Types = {
   FetchClubIntro: "minAd/FetchClubIntro",
-  SetClubIntro: "minAd/SetClubIntro",
+  FetchShowClubResume: "midAd/FetchShowClubResume",
+  SetShowClubResume: "midAd/SetShowClubResume",
 };
 
 export const actions = {
@@ -10,17 +11,21 @@ export const actions = {
     type: Types.FetchClubIntro,
     description,
   }),
-  // setClubIntro: ({ thumbnailData }) => ({
-  //   type: Types.SetClubThumbnail,
-  //   thumbnailData,
-  // }),
+  fetchShowClubResume: ({ clubId }) => ({
+    type: Types.FetchShowClubResume,
+    clubId,
+  }),
+  setShowClubResume: ({ resumeData }) => ({
+    type: Types.SetShowClubResume,
+    resumeData,
+  }),
 };
 
-const INITIAL_STATE = { thumbnailData: null };
+const INITIAL_STATE = { thumbnailData: null, resumeData: null };
 
 const reducer = createReducer(INITIAL_STATE, {
-  [Types.SetClubThumbnail]: (state, action) => {
-    state.thumbnailData = action.thumbnailData;
+  [Types.SetShowClubResume]: (state, action) => {
+    state.resumeData = action.resumeData;
   },
 });
 

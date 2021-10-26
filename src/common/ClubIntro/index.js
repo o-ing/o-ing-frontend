@@ -8,7 +8,6 @@ import ClubResumeModal from "../ClubResumeModal";
 
 const ClubIntro = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { clubId } = useParams();
   const clubData = useSelector((state) => state.clubDataStore.introData);
   const userClub = getLocalStorageItem("clubName");
@@ -31,7 +30,12 @@ const ClubIntro = () => {
             <h1 style={{ margin: "0 0 0 10px", padding: 0 }}>{clubData.name}</h1>
           </Header>
           {clubData?.name === userClub ? (
-            <SetClubIntro to={`/createClub/${clubId}`}>클럽 인트로 수정하기</SetClubIntro>
+            <div>
+              <SetClubIntro to={`/showResume/${clubId}`} style={{ right: "200px" }}>
+                자기소개서 확인하기
+              </SetClubIntro>
+              <SetClubIntro to={`/createClub/${clubId}`}>클럽 인트로 수정하기</SetClubIntro>
+            </div>
           ) : (
             <>
               <SetClubIntro to={`/club/${clubId}`} onClick={handleShowResume}>
@@ -81,29 +85,6 @@ const NoContent = styled.div`
   font-weight: bold;
 `;
 const SetClubIntro = styled(Link)`
-  position: absolute;
-  top: 365px;
-  right: 50px;
-  z-index: 1;
-  outline: none;
-  border: 2px solid rgba(${({ theme }) => theme.colors.$purple_rgb}, 0.5);
-  background-color: rgba(${({ theme }) => theme.colors.$purple_rgb}, 0.3);
-  width: fit-content;
-  height: 50px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  text-decoration: none;
-  padding: 5px;
-  color: black;
-  &:hover {
-    background-color: rgba(${({ theme }) => theme.colors.$purple_rgb}, 0.5);
-    color: black;
-  }
-`;
-const Modal = styled.button`
   position: absolute;
   top: 365px;
   right: 50px;

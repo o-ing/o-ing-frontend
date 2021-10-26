@@ -8,7 +8,7 @@ import adClubReducer from "../state/club/admin";
 import adminSaga from "../state/club/admin/saga";
 import thumbnailReducer from "../state/club/common/clubThumbnail";
 import thumbnailSaga from "../state/club/common/clubThumbnail/saga";
-import clubIntroStore from "../state/club/minAd";
+import midAdReducer from "../state/club/minAd";
 import clubIntroSaga from "../state/club/minAd/saga";
 import clubDataStore from "../state/club/common/clubData";
 import clubDataSaga from "../state/club/common/clubData/saga";
@@ -16,7 +16,7 @@ const reducer = combineReducers({
   auth: authReducer,
   adminClub: adClubReducer,
   thumbnailStore: thumbnailReducer,
-  clubIntroStore: clubIntroStore,
+  midAdReducer: midAdReducer,
   clubDataStore: clubDataStore,
 });
 const sagaMiddleware = createSagaMiddleware();
