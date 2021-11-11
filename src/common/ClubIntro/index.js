@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actions as ClubData } from "../../state/club/common/clubData";
 import { getLocalStorageItem } from "../util/usingLocalStorage";
 import ClubResumeModal from "../ClubResumeModal";
+import CreateBoard from "../../Modals/CreateBoard";
 
 const ClubIntro = () => {
   const dispatch = useDispatch();
@@ -12,13 +13,17 @@ const ClubIntro = () => {
   const clubData = useSelector((state) => state.clubDataStore.introData);
   const userClub = getLocalStorageItem("clubName");
   const [showResume, setShowResume] = useState(false);
-
+  const [showCreateBoardModal, setShowCreateBoardModal] = useState(false)
+  
   useEffect(() => {
     dispatch(ClubData.fetchGetClubIntro(clubId));
   }, [dispatch, clubId]);
   const handleShowResume = () => {
     setShowResume(true);
   };
+  const handleShowCreateModal = useCallback(() => {
+    setShowCreateBoardModal(true)
+  }, [])
   return (
     <TopWrapper>
       {clubData?.image && (
@@ -31,6 +36,10 @@ const ClubIntro = () => {
           </Header>
           {clubData?.name === userClub ? (
             <div>
+              <>
+                <SetClubIntro to={`/club/${clubId}`} onClick = {handleShowCreateModal} style={{ right: "350px" }} > 게시판 생성하기</SetClubIntro>
+                <CreateBoard visible={showCreateBoardModal} setVisible={setShowCreateBoardModal} clubId={clubId} />
+              </>
               <SetClubIntro to={`/showResume/${clubId}`} style={{ right: "200px" }}>
                 자기소개서 확인하기
               </SetClubIntro>
@@ -44,10 +53,9 @@ const ClubIntro = () => {
               <ClubResumeModal visible={showResume} setVisible={setShowResume} clubId={clubId} />
             </>
           )}
-          {clubData?.description && <Content dangerouslySetInnerHTML={{ __html: clubData.description }} />}
+          {clubData?.description[0] === "#" ? <NoContent>🌱 동아리 소개가 아직 준비 중입니다 🌱</NoContent> : <Content dangerouslySetInnerHTML={{ __html: clubData.description }} />}
         </>
       )}
-      {clubData?.description[0] === "#" && <NoContent>🌱 동아리 소개가 아직 준비 중입니다 🌱</NoContent>}
     </TopWrapper>
   );
 };

@@ -4,6 +4,7 @@ export const Types = {
   FetchClubIntro: "minAd/FetchClubIntro",
   FetchShowClubResume: "midAd/FetchShowClubResume",
   SetShowClubResume: "midAd/SetShowClubResume",
+  FetchCreateBoard: 'mindAd/CreateClubIntro'
 };
 
 export const actions = {
@@ -19,6 +20,11 @@ export const actions = {
     type: Types.SetShowClubResume,
     resumeData,
   }),
+  fetchCreateBoard: ({boardName, clubId}) => ({
+    type: Types.FetchCreateBoard,
+    boardName,
+    clubId
+  })
 };
 
 const INITIAL_STATE = { thumbnailData: null, resumeData: null };

@@ -15,11 +15,11 @@ function App() {
     <ThemeProvider theme={theme}>
       <Header />
       <Route exact path="/" component={Club} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/login" component={Login} />
-      <Route path="/club/:clubId" component={ClubIntro} />
-      <Route path="/createClub/:clubId" component={CreateClubIntro} />
-      <Route path="/showResume/:clubId" component={ShowResume} />
+      <Route path="/signup" component={Signup} exact />
+      <Route path="/login" component={Login} exact />
+      <Route path="/club/:clubId" component={ClubIntro} exact />
+      <Route path="/createClub/:clubId" component={CreateClubIntro} exact />
+      <Route path="/showResume/:clubId" component={ShowResume} exact />
     </ThemeProvider>
   );
 }

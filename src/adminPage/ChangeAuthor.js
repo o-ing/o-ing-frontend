@@ -26,7 +26,7 @@ const ChangeAuthor = ({ visible, setVisible }) => {
     <Modal title="권한 변경하기" visible={visible} onOk={handleOk} onCancel={handleCancel}>
       <ModalInner>
         <StyledInput placeholder="이메일을 입력해 주세요" onChange={handleEmail} value={email} />
-        <StyledInput placeholder="동아리며을 입력해 주세요" onChange={handleClub} value={club} />
+        <StyledInput placeholder="동아리명을 입력해 주세요" onChange={handleClub} value={club} />
       </ModalInner>
     </Modal>
   );

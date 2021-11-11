@@ -5,6 +5,7 @@ import { createClubIntroApi } from "../../../api/minAd/createClubIntroApi";
 import showClubResumeApi from "../../../api/minAd/showClubResumeApi";
 import { actions } from ".";
 import { message } from "antd";
+
 function* fetchClubIntro({ description }) {
   const result = yield call(createClubIntroApi, {
     url: "/api/club",
@@ -30,7 +31,16 @@ function* fetchShowClubResume({ clubId }) {
     message.error(apiMessage);
   }
 }
+function* fetchCreateBoard({boardName ,clubId}) {
+  console.log(boardName, clubId)
+  // const data = yield call(creatBoardApi, {
+  //   /api/club/{clubId}/board
+  // })
+}
 
 export default function* () {
-  yield all([takeLeading(Types.FetchClubIntro, fetchClubIntro), takeLeading(Types.FetchShowClubResume, fetchShowClubResume)]);
+  yield all([
+    takeLeading(Types.FetchClubIntro, fetchClubIntro), 
+    takeLeading(Types.FetchShowClubResume, fetchShowClubResume), 
+    takeLeading(Types.FetchCreateBoard, fetchCreateBoard)]);
 }
