@@ -20,6 +20,7 @@ const CreateBoard = ({ visible, setVisible, clubId}) => {
   const handleInputChange = useCallback((e) => {
     setBoardName(e.target.value)
   }, [])
+  
   return (
     <Modal title="생성할 게시판 이름을 적어주세요" visible={visible} onOk={handleOk} onCancel={handleCancel} >
       <Input onChange={handleInputChange} value={boardName} />

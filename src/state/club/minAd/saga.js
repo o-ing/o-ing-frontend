@@ -5,6 +5,7 @@ import { createClubIntroApi } from "../../../api/minAd/createClubIntroApi";
 import showClubResumeApi from "../../../api/minAd/showClubResumeApi";
 import { actions } from ".";
 import { message } from "antd";
+import createBoard from "../../../api/minAd/createBoard";
 
 function* fetchClubIntro({ description }) {
   const result = yield call(createClubIntroApi, {
@@ -33,9 +34,14 @@ function* fetchShowClubResume({ clubId }) {
 }
 function* fetchCreateBoard({boardName ,clubId}) {
   console.log(boardName, clubId)
-  // const data = yield call(creatBoardApi, {
-  //   /api/club/{clubId}/board
-  // })
+  const data = yield call(createBoard, {
+    url: `/api/club/${clubId}/board`,
+    data: {
+      name: boardName,
+      description: boardName
+    }
+  })
+  console.log(data)
 }
 
 export default function* () {
