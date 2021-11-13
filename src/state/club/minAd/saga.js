@@ -33,7 +33,6 @@ function* fetchShowClubResume({ clubId }) {
   }
 }
 function* fetchCreateBoard({boardName ,clubId}) {
-  console.log(boardName, clubId)
   const data = yield call(createBoard, {
     url: `/api/club/${clubId}/board`,
     data: {
@@ -41,7 +40,6 @@ function* fetchCreateBoard({boardName ,clubId}) {
       description: boardName
     }
   })
-  console.log(data)
 }
 
 export default function* () {

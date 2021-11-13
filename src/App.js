@@ -4,7 +4,7 @@ import Signup from "./auth/container/Signup";
 import "antd/dist/antd.css";
 import Login from "./auth/container/Login";
 import Club from "./club/container/Club";
-import Header from "./header/Header";
+import Header from "./components/header";
 import { ThemeProvider } from "styled-components";
 import theme from "./common/commonCss";
 import ClubIntro from "./common/ClubIntro";

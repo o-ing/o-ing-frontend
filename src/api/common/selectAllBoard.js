@@ -2,14 +2,13 @@ import axios from "axios";
 import { API_SUCCESS, SERVER_ERROR } from "../constant";
 import { getUrlAndToken } from "../util/getUrlAndToken";
 
-const createBoard = async ({ url, data }) => {
+const selectAllBoard = async ({ url}) => {
   let token = null;
   [url, token] = getUrlAndToken(url, "x-auth");
   try {
     const result = await axios({
       url,
-      method: "post",
-      data,
+      method: "get",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -27,4 +26,4 @@ const createBoard = async ({ url, data }) => {
     return { isSuccess: false, message };
   }
 };
-export default createBoard;
+export default selectAllBoard;

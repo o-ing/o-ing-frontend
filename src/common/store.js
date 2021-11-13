@@ -12,12 +12,15 @@ import midAdReducer from "../state/club/minAd";
 import clubIntroSaga from "../state/club/minAd/saga";
 import clubDataStore from "../state/club/common/clubData";
 import clubDataSaga from "../state/club/common/clubData/saga";
+import commonClub from '../state/club/common/club'
+import commonClubSaga from '../state/club/common/club/saga'
 const reducer = combineReducers({
   auth: authReducer,
   adminClub: adClubReducer,
   thumbnailStore: thumbnailReducer,
   midAdReducer: midAdReducer,
   clubDataStore: clubDataStore,
+  commonClub: commonClub
 });
 const sagaMiddleware = createSagaMiddleware();
 
@@ -25,7 +28,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
 
 function* rootSaga() {
-  yield all([authSaga(), adminSaga(), thumbnailSaga(), clubIntroSaga(), clubDataSaga()]);
+  yield all([authSaga(), adminSaga(), thumbnailSaga(), clubIntroSaga(), clubDataSaga(), commonClubSaga()]);
 }
 sagaMiddleware.run(rootSaga);
 

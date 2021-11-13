@@ -9,10 +9,9 @@ import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../../state/club/minAd";
-import {} from "react-redux";
+
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
-
 const CreateClubIntro = () => {
   const dispatch = useDispatch();
   const editRef = useRef();
