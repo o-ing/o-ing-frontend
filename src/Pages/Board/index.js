@@ -1,22 +1,27 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../../state/club/common/club";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import styled from "styled-components";
 
 const Board = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { clubId, boardId } = useParams();
   const posts = useSelector((state) => state.commonClub.posts);
 
   useEffect(() => {
-    console.log(clubId, "clubID");
     dispatch(actions.fetchSelectAllPostsInBoard({ clubId, boardId }));
   }, [dispatch, clubId, boardId]);
+
+  const handleClick = (postId) => {
+    dispatch(actions.fetchOnePost({ clubId, boardId, postId }));
+    history.push(`/club/${clubId}/board/${boardId}/post/${postId}`);
+  };
   return (
     <Wrapper>
       {posts.map(({ postId, title }) => (
-        <Card key={postId}>
+        <Card key={postId} onClick={() => handleClick(postId)}>
           <Title>{title}</Title>
         </Card>
       ))}

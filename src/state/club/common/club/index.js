@@ -5,6 +5,8 @@ export const Types = {
   SetSelectAllBoard: "common/SetSelectAllBoard",
   FetchSelectAllPostsInBoard: "common/FetchSelectAllPostsInBoard",
   SetSelectAllPostsInBoard: "common/SetSelectAllPosts",
+  FetchOnePost: "common/FetchOnePost",
+  SetOnePost: "common/SetOnePost",
 };
 
 export const actions = {
@@ -21,16 +23,27 @@ export const actions = {
     clubId,
     boardId,
   }),
-  setSelectAllPostsInBoard: ({ data }) => {
-    console.log(data);
-    return {
-      type: Types.SetSelectAllPostsInBoard,
-      data,
-    };
-  },
+  setSelectAllPostsInBoard: ({ data }) => ({
+    type: Types.SetSelectAllPostsInBoard,
+    data,
+  }),
+  fetchOnePost: ({ clubId, boardId, postId }) => ({
+    type: Types.FetchOnePost,
+    clubId,
+    boardId,
+    postId,
+  }),
+  setOnePost: ({ data }) => ({
+    type: Types.SetOnePost,
+    data,
+  }),
 };
 
-const INITIAL_STATE = { boards: [], posts: [{ clubId: null, boardId: null, postId: null, title: null }] };
+const INITIAL_STATE = {
+  boards: [],
+  posts: [{ clubId: null, boardId: null, postId: null, title: null }],
+  post: { clubId: null, boardId: null, postId: null, title: null, content: null, memberId: null },
+};
 
 const reducer = createReducer(INITIAL_STATE, {
   [Types.SetSelectAllBoard]: (state, action) => {
@@ -38,6 +51,9 @@ const reducer = createReducer(INITIAL_STATE, {
   },
   [Types.SetSelectAllPostsInBoard]: (state, action) => {
     state.posts = action.data;
+  },
+  [Types.SetOnePost]: (state, action) => {
+    state.post = action.data;
   },
 });
 

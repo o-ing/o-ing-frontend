@@ -11,6 +11,7 @@ import ClubIntro from "./common/ClubIntro";
 import CreateClubIntro from "./midAdPage/createClubIntro";
 import ShowResume from "./midAdPage/ShowResume";
 import Board from "./Pages/Board";
+import Post from "./Pages/Post";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="/createClub/:clubId" component={CreateClubIntro} exact />
       <Route path="/showResume/:clubId" component={ShowResume} exact />
       <Route path="/club/:clubId/board/:boardId" component={Board} exact />
+      <Route path="/club/:clubId/board/:boardId/post/:postId" component={Post} exact />
     </ThemeProvider>
   );
 }
