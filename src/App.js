@@ -10,6 +10,8 @@ import theme from "./common/commonCss";
 import ClubIntro from "./common/ClubIntro";
 import CreateClubIntro from "./midAdPage/createClubIntro";
 import ShowResume from "./midAdPage/ShowResume";
+import Board from "./Pages/Board";
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -20,6 +22,7 @@ function App() {
       <Route path="/club/:clubId" component={ClubIntro} exact />
       <Route path="/createClub/:clubId" component={CreateClubIntro} exact />
       <Route path="/showResume/:clubId" component={ShowResume} exact />
+      <Route path="/club/:clubId/board/:boardId" component={Board} exact />
     </ThemeProvider>
   );
 }
